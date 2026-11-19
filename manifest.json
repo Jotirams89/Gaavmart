@@ -1,0 +1,9 @@
+{
+  "name": "GaavMart – आपल्या गावाची ऑनलाइन बाजारपेठ",
+  "short_name": "GaavMart",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f5f8f6",
+  "theme_color": "#176b45",
+  "description": "Local food delivery and grocery marketplace MVP"
+}

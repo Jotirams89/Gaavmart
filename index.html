@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="mr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#176b45">
+<link rel="manifest" href="manifest.json">
+<title>GaavMart – आपल्या गावाची ऑनलाइन बाजारपेठ</title>
+<style>
+:root{--green:#176b45;--green2:#eaf5ee;--ink:#183126;--muted:#64756c;--line:#e2e9e4;--bg:#f5f8f6;--white:#fff;--orange:#f59e0b}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Devanagari",sans-serif;background:var(--bg);color:var(--ink)}
+header{background:var(--green);color:#fff;padding:18px 16px 16px;position:sticky;top:0;z-index:3;box-shadow:0 2px 8px #0001}
+.top{max-width:980px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:12px}.brand{font-size:25px;font-weight:850;letter-spacing:.2px}.tag{font-size:12px;opacity:.9}.pin{border:1px solid #ffffff66;border-radius:20px;padding:7px 10px;font-size:12px}
+main{max-width:980px;margin:18px auto;padding:0 14px 90px}.hero{background:linear-gradient(120deg,#176b45,#248b5b);color:#fff;padding:22px;border-radius:18px;margin-bottom:16px}.hero h1{margin:0 0 6px;font-size:24px}.hero p{margin:0;opacity:.9}
+.tabs{display:flex;gap:8px;overflow:auto;padding:4px 0 12px}.tabs button{white-space:nowrap;border:1px solid var(--line);background:#fff;border-radius:22px;padding:10px 14px;color:var(--ink);font-weight:650}.tabs button.active{background:var(--green);color:#fff;border-color:var(--green)}
+.panel,.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:13px;box-shadow:0 2px 8px #10251a08}.section-title{font-size:18px;font-weight:800;margin:6px 0 12px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:10px}.category{border:1px solid var(--line);border-radius:13px;padding:15px;background:#fff;text-align:left}.emoji{font-size:27px;display:block;margin-bottom:7px}.small{font-size:12px;color:var(--muted)}.muted{color:var(--muted)}.row{display:flex;align-items:center;justify-content:space-between;gap:10px}.product{display:flex;gap:12px;align-items:center}.product .pic{width:58px;height:58px;background:var(--green2);border-radius:12px;display:grid;place-items:center;font-size:25px;flex:none}.product-info{flex:1;min-width:0}.price{font-weight:800}.btn{border:0;background:var(--green);color:#fff;padding:11px 15px;border-radius:11px;font-weight:750;cursor:pointer}.btn.secondary{background:#eaf5ee;color:var(--green)}.btn.outline{background:#fff;color:var(--green);border:1px solid var(--green)}.btn.danger{background:#b42318}.btn:disabled{opacity:.45;cursor:not-allowed}input,select,textarea{width:100%;padding:11px 12px;border:1px solid #d6e1d9;border-radius:10px;background:#fff;font:inherit;margin:5px 0 12px;color:var(--ink)}label{font-size:13px;font-weight:700}form{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:0 12px}form .full{grid-column:1/-1}.notice{background:#fff8e7;border:1px solid #f5dfaa;color:#78520b;border-radius:12px;padding:12px;font-size:13px;margin:10px 0}.success{background:#edf8f0;border:1px solid #c9e8d1;color:#176b45;border-radius:12px;padding:12px;font-size:13px;margin:10px 0}.badge{font-size:11px;padding:5px 8px;border-radius:20px;background:#eef2ef;color:#45564c}.badge.ok{background:#e4f5e9;color:#176b45}.badge.wait{background:#fff3d6;color:#8a5b00}.hidden{display:none!important}.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);display:flex;justify-content:center;gap:7px;padding:9px;z-index:4}.bottom button{background:#fff;border:0;padding:7px 12px;color:var(--muted);font-weight:700}.bottom button.active{color:var(--green)}.qty{display:flex;align-items:center;gap:8px}.qty button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:4px 10px}.empty{text-align:center;padding:25px;color:var(--muted)}footer{text-align:center;color:var(--muted);font-size:11px;padding:20px}
+@media(min-width:700px){.hero h1{font-size:30px}.bottom{display:none}}
+</style>
+</head>
+<body>
+<header><div class="top"><div><div class="brand">🛍️ GaavMart</div><div class="tag">आपल्या गावाची ऑनलाइन बाजारपेठ</div></div><div class="pin">📍 PIN 416220</div></div></header>
+<main>
+<div class="hero"><h1>नमस्कार! Welcome to GaavMart</h1><p>Food • Grocery • Daily Needs — आपल्या गावात, आपल्या जवळ.</p></div>
+<div class="tabs" id="tabs">
+<button class="active" data-view="home">🏠 ग्राहक / Customer</button>
+<button data-view="seller">🏪 Seller</button>
+<button data-view="admin">🔐 Admin</button>
+</div>
+<section id="homeView">
+<div class="panel">
+<div class="row"><div><div class="section-title">डिलिव्हरी कुठे हवी आहे?</div><div class="small">Select your village</div></div><span class="badge ok">Service Area</span></div>
+<select id="villageSelect"></select><div class="small" id="chargeInfo"></div>
+</div>
+<div class="section-title">काय मागवायचे आहे?</div>
+<div class="grid">
+<button class="category" data-cat="Food"><span class="emoji">🍛</span><b>Food Delivery</b><div class="small">हॉटेल आणि नाश्ता</div></button>
+<button class="category" data-cat="Grocery"><span class="emoji">🛒</span><b>Grocery</b><div class="small">किराणा सामान</div></button>
+<button class="category" data-cat="Vegetables"><span class="emoji">🥬</span><b>Vegetables</b><div class="small">भाजीपाला</div></button>
+<button class="category" data-cat="Daily Needs"><span class="emoji">🥛</span><b>Daily Needs</b><div class="small">दैनंदिन वस्तू</div></button>
+</div>
+<div class="row" style="margin-top:20px"><div class="section-title">उपलब्ध उत्पादने</div><button class="btn secondary" id="allProducts">सर्व पहा</button></div>
+<div id="productList"></div>
+<div class="panel" style="margin-top:14px"><div class="row"><div><b>🧺 तुमची Cart</b><div class="small">एकावेळी एका दुकानाची ऑर्डर</div></div><b id="cartCount">0 वस्तू</b></div><div id="cartItems" class="small" style="margin:10px 0">Cart रिकामी आहे.</div><div class="row"><span>एकूण</span><b id="cartTotal">₹0</b></div><button class="btn" style="width:100%;margin-top:12px" id="checkoutBtn">ऑर्डर द्या / Checkout</button></div>
+<div id="checkoutPanel" class="panel hidden"><div class="section-title">ऑर्डर तपशील</div><form id="checkoutForm"><div><label>तुमचे नाव</label><input required id="custName" placeholder="पूर्ण नाव"></div><div><label>मोबाईल नंबर</label><input required id="custPhone" inputmode="numeric" pattern="[0-9]{10}" placeholder="10 अंकी नंबर"></div><div class="full"><label>पूर्ण पत्ता / Landmark</label><textarea required id="custAddress" rows="2" placeholder="घर क्रमांक, गल्ली, परिसर"></textarea></div><div><label>Payment Method</label><select id="payment"><option>Cash on Delivery</option><option>UPI (दुकानदाराला थेट)</option></select></div><div class="full notice">UPI निवडल्यास दुकानदाराशी थेट पेमेंटची खात्री करा. या डेमोमध्ये ऑनलाइन पेमेंट आपोआप पडताळले जात नाही.</div><button class="btn full" type="submit">ऑर्डर निश्चित करा</button></form></div>
+</section>
+<section id="sellerView" class="hidden">
+<div class="panel"><div class="section-title">Seller Registration / दुकानदार नोंदणी</div><div class="notice">नोंदणी मोफत. Admin मंजुरीनंतरच दुकान ग्राहकांना दिसेल.</div>
+<form id="sellerForm"><div><label>मालकाचे नाव</label><input required id="sOwner"></div><div><label>मोबाईल नंबर</label><input required id="sPhone" inputmode="numeric" pattern="[0-9]{10}"></div><div><label>दुकानाचे नाव</label><input required id="sName"></div><div><label>दुकानाचा प्रकार</label><select id="sType"><option>Hotel</option><option>Grocery</option><option>Vegetables</option><option>Daily Needs</option></select></div><div><label>गाव</label><select id="sVillage"></select></div><div><label>UPI ID (ऐच्छिक)</label><input id="sUpi" placeholder="name@upi"></div><div class="full"><label>दुकानाचा पत्ता</label><textarea id="sAddress" required rows="2"></textarea></div><button class="btn full">Registration Submit करा</button></form></div>
+<div class="panel"><div class="section-title">Seller Login / माझे दुकान</div><label>नोंदणीकृत मोबाईल नंबर</label><input id="sellerLoginPhone" inputmode="numeric" placeholder="10 अंकी नंबर"><button class="btn" id="sellerLogin">दुकान उघडा</button><div id="sellerArea"></div></div>
+</section>
+<section id="adminView" class="hidden">
+<div class="panel"><div class="section-title">Admin Login</div><div class="notice">डेमो PIN: <b>2468</b>. प्रत्यक्ष वापरापूर्वी सुरक्षित Admin Authentication जोडणे आवश्यक आहे.</div><label>Admin PIN</label><input id="adminPin" type="password" placeholder="PIN"><button class="btn" id="adminLogin">Login</button><div id="adminArea"></div></div>
+</section>
+<footer>GaavMart MVP Demo • स्थानिक बाजारपेठेसाठी तयार केलेला प्रारंभिक नमुना</footer>
+</main>
+<nav class="bottom"><button class="active" data-view="home">🏠 Home</button><button data-view="seller">🏪 Seller</button><button data-view="admin">🔐 Admin</button></nav>
+<script>
+const villages=[["उत्तूर",15],["धामणे",20],["बहिरेवाडी",25],["हळेवाडी",25],["मुमेवाडी",25],["चावणवाडी",30],["पिंपळगाव",30],["कल्लांमा बेलेवाडी",30],["बामणे",35]];
+const seed=[
+{id:1,name:"मिसळ पाव",cat:"Food",price:60,shop:"Demo Hotel",village:"उत्तूर",emoji:"🍛",approved:true},
+{id:2,name:"वडापाव",cat:"Food",price:20,shop:"Demo Hotel",village:"उत्तूर",emoji:"🥪",approved:true},
+{id:3,name:"तांदूळ 1 किलो",cat:"Grocery",price:65,shop:"Demo Kirana",village:"उत्तूर",emoji:"🍚",approved:true},
+{id:4,name:"साखर 1 किलो",cat:"Grocery",price:45,shop:"Demo Kirana",village:"उत्तूर",emoji:"🛍️",approved:true},
+{id:5,name:"टोमॅटो 1 किलो",cat:"Vegetables",price:30,shop:"Demo Fresh",village:"धामणे",emoji:"🍅",approved:true}
+];
+const get=(k,d)=>{try{return JSON.parse(localStorage.getItem("gm_"+k))??d}catch{return d}};
+const set=(k,v)=>localStorage.setItem("gm_"+k,JSON.stringify(v));
+let products=get("products",seed),sellers=get("sellers",[]),orders=get("orders",[]),cart=[],currentSeller=null,admin=false,filter="All";
+const $=id=>document.getElementById(id), money=n=>"₹"+Number(n).toFixed(0);
+function fillVillages(id){$(id).innerHTML=villages.map(([n,c])=>`<option value="${n}">${n}</option>`).join("")}
+fillVillages("villageSelect");fillVillages("sVillage");
+function charge(){let v=$("villageSelect").value,c=villages.find(x=>x[0]===v)?.[1]||15;$("chargeInfo").textContent=`${v} साठी प्रस्तावित डिलिव्हरी चार्ज: ${money(c)} (डेमो दर)`;renderProducts()}
+$("villageSelect").addEventListener("change",charge);charge();
+function view(v){["home","seller","admin"].forEach(x=>$(x+"View").classList.toggle("hidden",x!==v));document.querySelectorAll("[data-view]").forEach(b=>b.classList.toggle("active",b.dataset.view===v))}
+document.querySelectorAll("[data-view]").forEach(b=>b.addEventListener("click",()=>view(b.dataset.view)));
+document.querySelectorAll("[data-cat]").forEach(b=>b.addEventListener("click",()=>{filter=b.dataset.cat;renderProducts()}));
+$("allProducts").onclick=()=>{filter="All";renderProducts()};
+function renderProducts(){let v=$("villageSelect").value;let arr=products.filter(p=>p.approved&&p.village===v&&(filter==="All"||p.cat===filter));$("productList").innerHTML=arr.length?arr.map(p=>`<div class="card product"><div class="pic">${p.emoji||"🛍️"}</div><div class="product-info"><b>${esc(p.name)}</b><div class="small">${esc(p.shop)} • ${esc(p.cat)}</div><div class="price">${money(p.price)}</div></div><button class="btn secondary" onclick="addCart(${p.id})">Add +</button></div>`).join(""):`<div class="empty">या गावात सध्या उत्पादने उपलब्ध नाहीत.<br><span class="small">दुकानदार नोंदणी करून उत्पादने जोडू शकतात.</span></div>`}
+function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function addCart(id){let p=products.find(x=>x.id===id);if(cart.length&&cart[0].store!==p.shop){alert("एकावेळी एका दुकानातूनच ऑर्डर देता येईल. आधीची Cart रिकामी करा.");return}let it=cart.find(x=>x.id===id);if(it)it.qty++;else cart.push({...p,qty:1,store:p.shop});renderCart()}
+function renderCart(){$("cartCount").textContent=cart.reduce((a,b)=>a+b.qty,0)+" वस्तू";$("cartItems").innerHTML=cart.length?cart.map(x=>`${esc(x.name)} × ${x.qty} — ${money(x.price*x.qty)}`).join("<br>"):"Cart रिकामी आहे.";let sub=cart.reduce((a,b)=>a+b.price*b.qty,0);$("cartTotal").textContent=money(sub+(cart.length?(villages.find(x=>x[0]===$("villageSelect").value)?.[1]||0):0))}
+$("checkoutBtn").onclick=()=>{if(!cart.length){alert("आधी उत्पादने Cart मध्ये जोडा.");return}$("checkoutPanel").classList.toggle("hidden")};
+$("checkoutForm").onsubmit=e=>{e.preventDefault();let sub=cart.reduce((a,b)=>a+b.price*b.qty,0),fee=villages.find(x=>x[0]===$("villageSelect").value)?.[1]||0;let order={id:Date.now(),items:cart.map(x=>({name:x.name,qty:x.qty,price:x.price})),store:cart[0].shop,village:$("villageSelect").value,name:$("custName").value,phone:$("custPhone").value,address:$("custAddress").value,payment:$("payment").value,subtotal:sub,delivery:fee,total:sub+fee,status:"Pending",created:new Date().toLocaleString("mr-IN")};orders.unshift(order);set("orders",orders);alert("डेमो ऑर्डर नोंदवली! Order ID: "+order.id+". दुकानदार/Admin ला प्रत्यक्ष सूचना पाठवली जात नाही.");cart=[];renderCart();$("checkoutPanel").classList.add("hidden");e.target.reset()};
+$("sellerForm").onsubmit=e=>{e.preventDefault();let s={id:Date.now(),owner:$("sOwner").value,phone:$("sPhone").value,name:$("sName").value,type:$("sType").value,village:$("sVillage").value,upi:$("sUpi").value,address:$("sAddress").value,status:"Pending"};sellers.push(s);set("sellers",sellers);alert("नोंदणी डेमोमध्ये जतन झाली. Admin मंजुरीची प्रतीक्षा करा.");e.target.reset()};
+$("sellerLogin").onclick=()=>{let s=sellers.find(x=>x.phone===$("sellerLoginPhone").value&&x.status==="Approved");if(!s){$("sellerArea").innerHTML='<div class="notice">दुकान सापडले नाही किंवा Admin मंजुरी बाकी आहे.</div>';return}currentSeller=s;renderSeller()};
+function renderSeller(){let s=currentSeller;$("sellerArea").innerHTML=`<div class="success">Welcome, ${esc(s.name)} • ${esc(s.village)}</div><div class="section-title">नवीन Product जोडा</div><form id="productForm"><div><label>Product Name</label><input required id="pName"></div><div><label>Category</label><select id="pCat"><option>Grocery</option><option>Food</option><option>Vegetables</option><option>Daily Needs</option></select></div><div><label>Price ₹</label><input required type="number" min="1" id="pPrice"></div><div><label>Emoji (उदा. 🍅)</label><input id="pEmoji" value="🛍️"></div><button class="btn full">Product Save करा</button></form><div class="section-title">तुमच्या ऑर्डर्स</div>${orders.filter(o=>o.store===s.name).map(o=>`<div class="card"><b>Order ${o.id}</b><div class="small">${esc(o.name)} • ${esc(o.village)} • ${esc(o.payment)}</div><b>${money(o.total)}</b><div class="small">Status: ${esc(o.status)}</div><button class="btn secondary" onclick="sellerStatus(${o.id},'Accepted')">Accept</button> <button class="btn secondary" onclick="sellerStatus(${o.id},'Preparing')">Preparing</button> <button class="btn secondary" onclick="sellerStatus(${o.id},'Ready')">Ready</button></div>`).join("")||'<div class="empty">अजून ऑर्डर्स नाहीत.</div>'}`;
+$("productForm").onsubmit=e=>{e.preventDefault();products.push({id:Date.now(),name:$("pName").value,cat:$("pCat").value,price:Number($("pPrice").value),shop:s.name,village:s.village,emoji:$("pEmoji").value,approved:true});set("products",products);alert("Product जोडले.");renderSeller();renderProducts()}}
+function sellerStatus(id,status){orders=orders.map(o=>o.id===id?{...o,status}:o);set("orders",orders);renderSeller()}
+$("adminLogin").onclick=()=>{if($("adminPin").value!=="2468"){alert("चुकीचा डेमो PIN");return}admin=true;renderAdmin()};
+function renderAdmin(){let pending=sellers.filter(s=>s.status==="Pending");$("adminArea").innerHTML=`<div class="success">Admin Demo Dashboard • ${sellers.length} Sellers • ${orders.length} Orders</div><div class="section-title">Seller Approvals</div>${pending.map(s=>`<div class="card"><b>${esc(s.name)}</b><div class="small">${esc(s.owner)} • ${esc(s.phone)} • ${esc(s.village)} • ${esc(s.type)}</div><button class="btn" onclick="approveSeller(${s.id})">Approve</button></div>`).join("")||'<div class="empty">Pending दुकानदार नाहीत.</div>'}<div class="section-title">सर्व ऑर्डर्स</div>${orders.map(o=>`<div class="card"><b>Order ${o.id}</b><div class="small">${esc(o.name)} • ${esc(o.phone)} • ${esc(o.village)}</div><div>${o.items.map(i=>esc(i.name)+" × "+i.qty).join(", ")}</div><b>${money(o.total)}</b><div class="small">${esc(o.payment)} • ${esc(o.status)}</div><select onchange="adminStatus(${o.id},this.value)"><option ${o.status==="Pending"?"selected":""}>Pending</option><option>Accepted</option><option>Preparing</option><option>Ready</option><option>Out for Delivery</option><option>Delivered</option><option>Cancelled</option></select></div>`).join("")||'<div class="empty">ऑर्डर्स नाहीत.</div>'}<div class="section-title">Village Delivery Charges</div>${villages.map(([n,c])=>`<div class="row card"><b>${n}</b><span>${money(c)}</span></div>`).join("")}<button class="btn danger" onclick="if(confirm('डेमो डेटा पुसायचा?')){localStorage.clear();location.reload()}">Reset Demo Data</button>`}
+function approveSeller(id){sellers=sellers.map(s=>s.id===id?{...s,status:"Approved"}:s);set("sellers",sellers);renderAdmin()}
+function adminStatus(id,status){orders=orders.map(o=>o.id===id?{...o,status}:o);set("orders",orders);renderAdmin()}
+renderProducts();renderCart();
+if("serviceWorker" in navigator && location.protocol.startsWith("http"))navigator.serviceWorker.register("./sw.js").catch(()=>{});
+</script>
+</body>
+</html>
